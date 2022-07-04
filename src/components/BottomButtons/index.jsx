@@ -1,0 +1,93 @@
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
+import { HiVolumeUp } from "react-icons/hi";
+import useSound from "use-sound";
+import { useEffect, useRef, useState } from "react";
+
+function BottomButtons({ onNewButtonClick, soundUrl }) {
+  const [play, { stop }] = useSound(soundUrl, { interrupt: true });
+
+  return (
+    <Wrapper>
+      <LeftButtonGroup>
+        <BookmarkButton />
+        <ShareButton />
+      </LeftButtonGroup>
+      <NewLandscapeButton
+        onClick={() => {
+          stop();
+          onNewButtonClick();
+        }}
+      >
+        new landscape
+      </NewLandscapeButton>
+      <VolumeButton onClick={play} />
+    </Wrapper>
+  );
+}
+
+BottomButtons.propTypes = {
+  onNewButtonClick: PropTypes.func.isRequired,
+  soundUrl: PropTypes.string.isRequired,
+};
+
+const Wrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  bottom: 0.1rem;
+  padding: 1rem 0rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LeftButtonGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 9rem;
+  padding: 0 1rem;
+`;
+
+const BookmarkButton = styled(FaRegBookmark)`
+  width: 3.5rem;
+  height: 1.5rem;
+  padding: 1rem 0.1rem;
+  border-radius: 50% 50%;
+  font-size: 1rem;
+  color: #265d6e;
+  background-color: white;
+`;
+
+const ShareButton = styled(FaShareAlt)`
+  width: 3.5rem;
+  height: 1.5rem;
+  padding: 1rem 0.1rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  color: #265d6e;
+  background-color: white;
+`;
+
+const NewLandscapeButton = styled.button`
+  width: 13rem;
+  height: 3rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0.3rem solid white;
+  border-radius: 20rem;
+  font-size: 1.3rem;
+  margin-right: 4rem;
+  cursor: pointer;
+`;
+
+const VolumeButton = styled(HiVolumeUp)`
+  width: 3.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  color: white;
+`;
+
+export default BottomButtons;
