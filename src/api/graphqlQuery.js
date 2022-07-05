@@ -12,4 +12,13 @@ export const GET_PHOTO = gql`
   }
 `;
 
-export const GET_PHOTOS = gql``;
+export const LOGIN = gql`
+  mutation Login($name: String!, $email: String!) {
+    login(name: $name, email: $email) {
+      _id
+      email
+      name
+      accessToken
+    }
+  }
+`;
