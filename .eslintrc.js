@@ -25,6 +25,7 @@ module.exports = {
     "func-names": "off",
     "no-shadow": "off",
     "no-underscore-dangle": "off",
+    "no-restricted-syntax": "off",
   },
   settings: {
     "import/resolver": {
