@@ -6,11 +6,13 @@ import { ErrorBoundary } from "react-error-boundary";
 import theme from "./components/themes";
 import GlobalStyle from "./components/themes/GlobalStyle";
 import MainPage from "./pages/MainPage";
+import GlobalModal from "./components/GlobalModal";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <GlobalModal />
       <Routes>
         <Route
           path="/"

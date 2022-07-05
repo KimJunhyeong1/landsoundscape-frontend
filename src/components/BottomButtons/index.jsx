@@ -47,29 +47,22 @@ const LeftButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 9rem;
+  width: 10rem;
   padding: 0 1rem;
 `;
 
-const BookmarkButton = styled(FaRegBookmark)`
+const Icon = styled.div`
   width: 3.5rem;
-  height: 1.5rem;
-  padding: 1rem 0.1rem;
-  border-radius: 50% 50%;
-  font-size: 1rem;
-  color: #265d6e;
-  background-color: white;
-`;
-
-const ShareButton = styled(FaShareAlt)`
-  width: 3.5rem;
-  height: 1.5rem;
-  padding: 1rem 0.1rem;
+  height: 3rem;
+  padding: 0.5rem 0.1rem;
   border-radius: 50%;
   font-size: 1rem;
   color: #265d6e;
   background-color: white;
 `;
+
+const BookmarkButton = styled(Icon.withComponent(FaRegBookmark))``;
+const ShareButton = styled(Icon.withComponent(FaShareAlt))``;
 
 const NewLandscapeButton = styled.button`
   width: 13rem;
