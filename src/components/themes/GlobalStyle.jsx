@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  *{
+  box-sizing: border-box;
+  }
+  
   html {
     @media only screen and (max-width: 767px) {
       font-size: 12px;
