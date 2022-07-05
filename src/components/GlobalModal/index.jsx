@@ -1,12 +1,17 @@
 import { useRecoilValue } from "recoil";
 import Modal from "../Modal";
 import modalState from "../../recoil/modal";
+import Login from "../Login";
 
 function GlobalModal() {
   const { modalType, modalProps } = useRecoilValue(modalState) || {};
 
   if (modalType === "LoginModal") {
-    return <Modal {...modalProps}></Modal>;
+    return (
+      <Modal {...modalProps}>
+        <Login />
+      </Modal>
+    );
   }
 
   if (modalType === "UploadModal") {

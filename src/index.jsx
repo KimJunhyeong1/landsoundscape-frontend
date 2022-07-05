@@ -2,8 +2,10 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RecoilRoot } from "recoil";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App";
+import DebugObserver from "./components/DebugObserver";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,9 +18,12 @@ const queryClient = new QueryClient({
 const renderApp = () => (
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <DebugObserver />
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </GoogleOAuthProvider>
     </RecoilRoot>
   </QueryClientProvider>
 );

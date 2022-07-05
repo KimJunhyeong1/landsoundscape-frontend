@@ -1,5 +1,5 @@
 import { GraphQLClient } from "graphql-request";
-import { GET_PHOTO } from "./graphqlQuery";
+import { GET_PHOTO, LOGIN } from "./graphqlQuery";
 
 const endpoint = process.env.REACT_APP_API_SERVER_URL;
 const API = new GraphQLClient(endpoint);
@@ -12,4 +12,11 @@ export const getRandomPhoto = async exceptionId => {
   return data;
 };
 
-export const getPhoto = async Id => {};
+export const login = async ({ name, email }) => {
+  const { login: data } = await API.request(LOGIN, {
+    name,
+    email,
+  });
+
+  return data;
+};
