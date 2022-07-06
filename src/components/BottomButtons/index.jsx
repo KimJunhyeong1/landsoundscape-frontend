@@ -1,17 +1,25 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
+import { FaBookmark, FaRegBookmark, FaShareAlt } from "react-icons/fa";
 import { HiVolumeUp } from "react-icons/hi";
 import useSound from "use-sound";
-import { useEffect, useRef, useState } from "react";
 
-function BottomButtons({ onNewButtonClick, soundUrl }) {
+function BottomButtons({
+  onNewButtonClick,
+  onBookmarkButtonClick,
+  soundUrl,
+  isBookmark,
+}) {
   const [play, { stop }] = useSound(soundUrl, { interrupt: true });
 
   return (
     <Wrapper>
       <LeftButtonGroup>
-        <BookmarkButton />
+        {isBookmark ? (
+          <BookmarkButton />
+        ) : (
+          <BookmarkRegButton onClick={onBookmarkButtonClick} />
+        )}
         <ShareButton />
       </LeftButtonGroup>
       <NewLandscapeButton
@@ -29,7 +37,9 @@ function BottomButtons({ onNewButtonClick, soundUrl }) {
 
 BottomButtons.propTypes = {
   onNewButtonClick: PropTypes.func.isRequired,
+  onBookmarkButtonClick: PropTypes.func.isRequired,
   soundUrl: PropTypes.string.isRequired,
+  isBookmark: PropTypes.bool.isRequired,
 };
 
 const Wrapper = styled.div`
@@ -61,7 +71,8 @@ const Icon = styled.div`
   background-color: white;
 `;
 
-const BookmarkButton = styled(Icon.withComponent(FaRegBookmark))``;
+const BookmarkButton = styled(Icon.withComponent(FaBookmark))``;
+const BookmarkRegButton = styled(Icon.withComponent(FaRegBookmark))``;
 const ShareButton = styled(Icon.withComponent(FaShareAlt))``;
 
 const NewLandscapeButton = styled.button`

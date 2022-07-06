@@ -1,15 +1,20 @@
 import { GraphQLClient } from "graphql-request";
-import { GET_PHOTO, LOGIN } from "./graphqlQuery";
+import {
+  GET_PHOTO_WITH_BOOKMARKS,
+  INSERT_BOOKMARK_FOR_USER,
+  LOGIN,
+} from "./graphqlQuery";
 
 const endpoint = process.env.REACT_APP_API_SERVER_URL;
 const API = new GraphQLClient(endpoint);
 
-export const getRandomPhoto = async exceptionId => {
-  const { photo: data } = await API.request(GET_PHOTO, {
+export const getRandomPhotoAndBookmarks = async (exceptionId, userId) => {
+  const { photo, user } = await API.request(GET_PHOTO_WITH_BOOKMARKS, {
     photoId: exceptionId,
+    userId,
   });
 
-  return data;
+  return { photo, user };
 };
 
 export const login = async ({ name, email }) => {
@@ -17,6 +22,22 @@ export const login = async ({ name, email }) => {
     name,
     email,
   });
+
+  return data;
+};
+
+export const insertBookmark = async input => {
+  const { insertBookmarkForUser: data } = await API.request(
+    INSERT_BOOKMARK_FOR_USER,
+    {
+      input,
+    },
+    {
+      authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("loginData")).accessToken
+      }`,
+    },
+  );
 
   return data;
 };

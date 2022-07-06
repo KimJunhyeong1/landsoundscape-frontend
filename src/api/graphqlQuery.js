@@ -1,13 +1,18 @@
 import { gql } from "graphql-request";
 
-export const GET_PHOTO = gql`
-  query getPhoto($photoId: ID) {
+export const GET_PHOTO_WITH_BOOKMARKS = gql`
+  query Photo($photoId: ID, $userId: ID) {
     photo(id: $photoId) {
       _id
       imageUrl
       soundUrl
       country
       city
+    }
+    user(id: $userId) {
+      bookmarks {
+        _id
+      }
     }
   }
 `;
@@ -19,6 +24,14 @@ export const LOGIN = gql`
       email
       name
       accessToken
+    }
+  }
+`;
+
+export const INSERT_BOOKMARK_FOR_USER = gql`
+  mutation Mutation($input: InsertBookmarkForUserInput!) {
+    insertBookmarkForUser(input: $input) {
+      bookmarks
     }
   }
 `;
