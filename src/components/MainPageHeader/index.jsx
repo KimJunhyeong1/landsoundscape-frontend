@@ -2,10 +2,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { ImLocation2 } from "react-icons/im";
 
-function MainPageHeader({ city, country }) {
+function MainPageHeader({ creator, city, country }) {
   return (
     <HeaderWrapper>
-      <HeaderContent>ANDRESS PHOTOS</HeaderContent>
+      <HeaderContent>{creator}</HeaderContent>
       <Location>
         <LocationIcon />
         <HeaderContent>
@@ -19,6 +19,7 @@ function MainPageHeader({ city, country }) {
 export default MainPageHeader;
 
 MainPageHeader.propTypes = {
+  creator: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
 };
