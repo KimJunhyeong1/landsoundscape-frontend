@@ -29,7 +29,7 @@ function MainPage() {
       { userId: userData?._id, photoId: currentPhotoId },
       {
         onSuccess: payload => {
-          setIsBookmark(payload.bookmarks.some(id => id === data.photo._id));
+          setIsBookmark(payload.bookmarks.some(id => id === data.photo?._id));
         },
       },
     );
@@ -37,19 +37,23 @@ function MainPage() {
 
   useEffect(() => {
     setIsBookmark(
-      data.user?.bookmarks.some(element => element._id === data.photo._id),
+      data.user?.bookmarks.some(element => element._id === data.photo?._id),
     );
-    setCurrentPhotoId(data.photo._id);
+    setCurrentPhotoId(data.photo?._id);
   }, [data]);
 
   return (
     <PhotoWrapper>
-      <Photo src={data.photo.imageUrl} />
-      <MainPageHeader city={data.photo.city} country={data.photo.country} />
+      <Photo src={data.photo?.imageUrl} />
+      <MainPageHeader
+        creator={data.photo?.creator}
+        city={data.photo?.city}
+        country={data.photo?.country}
+      />
       <BottomButtons
         onNewButtonClick={refetch}
         onBookmarkButtonClick={handleBookmarkButtonClick}
-        soundUrl={data.photo.soundUrl}
+        soundUrl={data.photo?.soundUrl}
         isBookmark={isBookmark}
       />
       <AsideButtons />

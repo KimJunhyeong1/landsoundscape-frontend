@@ -6,6 +6,7 @@ export const GET_PHOTO_WITH_BOOKMARKS = gql`
       _id
       imageUrl
       soundUrl
+      creator
       country
       city
     }
@@ -32,6 +33,18 @@ export const INSERT_BOOKMARK_FOR_USER = gql`
   mutation Mutation($input: InsertBookmarkForUserInput!) {
     insertBookmarkForUser(input: $input) {
       bookmarks
+    }
+  }
+`;
+
+export const FILE_UPLOAD = gql`
+  mutation UploadPhoto($file: Upload!, $input: PhotoInput) {
+    uploadPhoto(file: $file, input: $input) {
+      _id
+      imageUrl
+      creator
+      country
+      city
     }
   }
 `;
