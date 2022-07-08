@@ -1,6 +1,8 @@
 import ReactDom from "react-dom";
 import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 import useModal from "../../hooks/useModal";
 
@@ -12,7 +14,13 @@ export default function Modal({ children, title }) {
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalTitle>{title}</ModalTitle>
         <CloseButton onClick={hideModal} />
-        {children}
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <ErrorBoundary
+            fallbackRender={({ error }) => <div>{error.message}</div>}
+          >
+            {children}
+          </ErrorBoundary>
+        </Suspense>
       </ModalContainer>
     </ModalOverlay>,
     document.getElementById("portal"),
@@ -44,6 +52,7 @@ const ModalContainer = styled.div`
   box-shadow: 0px 8px 30px;
   border-radius: 20px;
   z-index: 1000;
+  overflow-y: auto;
 `;
 
 const ModalTitle = styled.span`

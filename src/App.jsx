@@ -7,29 +7,26 @@ import theme from "./components/themes";
 import GlobalStyle from "./components/themes/GlobalStyle";
 import MainPage from "./pages/MainPage";
 import GlobalModal from "./components/GlobalModal";
+import PhotoDetailPage from "./pages/PhotoDetailPage";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <GlobalModal />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<h1>Loading...</h1>}>
-              <ErrorBoundary
-                fallbackRender={({ error }) => <div>{error.message}</div>}
-              >
-                <MainPage />
-              </ErrorBoundary>
-            </Suspense>
-          }
-        />
-        <Route path="/map" element={<></>} />
-        <Route path="/my-page" element={<></>} />
-        <Route path="/country" element={<></>} />
-      </Routes>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <ErrorBoundary
+          fallbackRender={({ error }) => <div>{error.message}</div>}
+        >
+          <GlobalModal />
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/:photoId" element={<PhotoDetailPage />} />
+            <Route path="/map" element={<></>} />
+            <Route path="/my-page" element={<></>} />
+            <Route path="/country" element={<></>} />
+          </Routes>
+        </ErrorBoundary>
+      </Suspense>
     </ThemeProvider>
   );
 }

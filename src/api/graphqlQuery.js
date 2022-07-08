@@ -1,5 +1,23 @@
 import { gql } from "graphql-request";
 
+export const GET_RANDOM_PHOTO_WITH_BOOKMARKS = gql`
+  query Photo($photoId: ID, $userId: ID) {
+    randomPhoto(id: $photoId) {
+      _id
+      imageUrl
+      soundUrl
+      creator
+      country
+      city
+    }
+    user(id: $userId) {
+      bookmarks {
+        _id
+      }
+    }
+  }
+`;
+
 export const GET_PHOTO_WITH_BOOKMARKS = gql`
   query Photo($photoId: ID, $userId: ID) {
     photo(id: $photoId) {
@@ -13,6 +31,20 @@ export const GET_PHOTO_WITH_BOOKMARKS = gql`
     user(id: $userId) {
       bookmarks {
         _id
+      }
+    }
+  }
+`;
+
+export const GET_USER_BOOKMARKS = gql`
+  query User($userId: ID) {
+    user(id: $userId) {
+      bookmarks {
+        _id
+        imageUrl
+        tags
+        country
+        city
       }
     }
   }
@@ -42,6 +74,7 @@ export const FILE_UPLOAD = gql`
     uploadPhoto(file: $file, input: $input) {
       _id
       imageUrl
+      soundUrl
       creator
       country
       city
