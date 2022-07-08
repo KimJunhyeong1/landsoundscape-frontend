@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useMutation } from "react-query";
 import { useRecoilValue } from "recoil";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import { useNavigate } from "react-router-dom";
 
 import { fileUpload } from "../../api";
 import loginState from "../../recoil/auth";
@@ -10,6 +11,7 @@ import useModal from "../../hooks/useModal";
 
 function Upload() {
   const { hideModal } = useModal();
+  const navigate = useNavigate();
   const userData = useRecoilValue(loginState);
   const [imageFile, setImageFile] = useState({});
   const [country, setCountry] = useState("");
@@ -42,7 +44,8 @@ function Upload() {
         input: { creator: userData.name, country, city },
       },
       {
-        onSuccess: () => {
+        onSuccess: response => {
+          navigate(`/${response._id}`);
           hideModal();
         },
       },
