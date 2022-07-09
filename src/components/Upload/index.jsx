@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styled from "styled-components";
 import { useMutation } from "react-query";
 import { useRecoilValue } from "recoil";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import { countries, getCitiesByCountryCode } from "country-city-location";
 import { useNavigate } from "react-router-dom";
 
 import { fileUpload } from "../../api";
@@ -16,8 +18,31 @@ function Upload() {
   const [imageFile, setImageFile] = useState({});
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
+  const [cityOptions, setCityOptions] = useState([]);
   const [previewUrl, setPreviewUrl] = useState("");
   const fileUploadMutation = useMutation(fileUpload);
+  const countryOptions = useMemo(() => {
+    const Options = countryList()
+      .getData()
+      .map(country => {
+        const countryData = countries.find(
+          element => element.Alpha2Code === country.value,
+        );
+        return {
+          value: {
+            code: country.value,
+            name: country.label,
+            coordinates: [
+              parseFloat(countryData.Latitude),
+              parseFloat(countryData.Longitude),
+            ],
+          },
+          label: country.label,
+        };
+      });
+
+    return Options;
+  }, []);
 
   const encodeFileToBase64 = fileBlob => {
     const reader = new FileReader();
@@ -30,7 +55,22 @@ function Upload() {
     });
   };
 
-  const handleChange = e => {
+  const handleCountryChange = option => {
+    setCountry(option);
+    const options = getCitiesByCountryCode(option.value.code).map(element => ({
+      value: element.name,
+      label: element.name,
+    }));
+
+    setCityOptions(options);
+    setCity("");
+  };
+
+  const handelCityChange = option => {
+    setCity(option);
+  };
+
+  const handleImageChange = e => {
     encodeFileToBase64(e.target.files[0]);
     setImageFile(e.target.files[0]);
   };
@@ -41,7 +81,12 @@ function Upload() {
     fileUploadMutation.mutate(
       {
         file: imageFile,
-        input: { creator: userData.name, country, city },
+        input: {
+          creator: userData.name,
+          country: country.label,
+          city: city.label,
+          coordinates: country.value.coordinates,
+        },
       },
       {
         onSuccess: response => {
@@ -57,23 +102,18 @@ function Upload() {
       <input
         type="file"
         accept="image/jpeg, image/png, image/jpg"
-        onChange={handleChange}
+        onChange={handleImageChange}
         required
       />
       <div>
         {previewUrl && <ImagePreview src={previewUrl} alt="preview-img" />}
       </div>
-      <CountryDropdown
+      <Select
+        options={countryOptions}
         value={country}
-        onChange={val => setCountry(val)}
-        required
+        onChange={handleCountryChange}
       />
-      <RegionDropdown
-        country={country}
-        value={city}
-        onChange={val => setCity(val)}
-        required
-      />
+      <Select options={cityOptions} value={city} onChange={handelCityChange} />
       <button type="submit">제출</button>
     </form>
   );
