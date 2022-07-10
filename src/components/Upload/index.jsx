@@ -33,8 +33,8 @@ function Upload() {
             code: country.value,
             name: country.label,
             coordinates: [
-              parseFloat(countryData.Latitude),
               parseFloat(countryData.Longitude),
+              parseFloat(countryData.Latitude),
             ],
           },
           label: country.label,
