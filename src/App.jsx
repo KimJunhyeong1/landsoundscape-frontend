@@ -8,6 +8,7 @@ import GlobalStyle from "./components/themes/GlobalStyle";
 import MainPage from "./pages/MainPage";
 import GlobalModal from "./components/GlobalModal";
 import PhotoDetailPage from "./pages/PhotoDetailPage";
+import MapPage from "./pages/MapPage";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/:photoId" element={<PhotoDetailPage />} />
-            <Route path="/map" element={<></>} />
+            <Route path="/map" element={<MapPage />} />
             <Route path="/my-page" element={<></>} />
             <Route path="/country" element={<></>} />
           </Routes>

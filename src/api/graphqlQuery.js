@@ -81,3 +81,15 @@ export const FILE_UPLOAD = gql`
     }
   }
 `;
+
+export const GET_MARKERS = gql`
+  query Markers {
+    markers {
+      _id
+      country
+      coordinates
+      recentlyPhotoUrl
+      photosNum
+    }
+  }
+`;
