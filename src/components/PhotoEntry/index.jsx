@@ -26,6 +26,7 @@ PhotoEntry.propTypes = {
 
 const Wrapper = styled.div`
   position: relative;
+  height: 20rem;
 `;
 
 const PhotoView = styled.img`
