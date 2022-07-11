@@ -93,3 +93,19 @@ export const GET_MARKERS = gql`
     }
   }
 `;
+
+export const GET_MARKER = gql`
+  query Marker($markerId: ID!) {
+    marker(id: $markerId) {
+      country
+      photos {
+        _id
+        imageUrl
+        creator
+        tags
+        country
+        city
+      }
+    }
+  }
+`;
