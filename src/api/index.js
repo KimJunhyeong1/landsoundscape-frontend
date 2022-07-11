@@ -1,6 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import {
   FILE_UPLOAD,
+  GET_MARKER,
   GET_MARKERS,
   GET_PHOTO_WITH_BOOKMARKS,
   GET_RANDOM_PHOTO_WITH_BOOKMARKS,
@@ -95,4 +96,10 @@ export const getMarkers = async () => {
   const { markers } = await API.request(GET_MARKERS);
 
   return markers;
+};
+
+export const getMarker = async markerId => {
+  const { marker } = await API.request(GET_MARKER, { markerId });
+
+  return marker;
 };

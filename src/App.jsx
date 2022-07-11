@@ -9,6 +9,7 @@ import MainPage from "./pages/MainPage";
 import GlobalModal from "./components/GlobalModal";
 import PhotoDetailPage from "./pages/PhotoDetailPage";
 import MapPage from "./pages/MapPage";
+import CountryPage from "./pages/CountryPage";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <Route path="/:photoId" element={<PhotoDetailPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/my-page" element={<></>} />
-            <Route path="/country" element={<></>} />
+            <Route path="/country/:countryId" element={<CountryPage />} />
           </Routes>
         </ErrorBoundary>
       </Suspense>
