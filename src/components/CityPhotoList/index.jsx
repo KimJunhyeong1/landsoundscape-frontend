@@ -12,7 +12,7 @@ function CityPhotoList({ groupedCityPhotos }) {
         <CountryName>{city}</CountryName>
         {photos.map(photo => (
           <Link key={photo._id} to={`/${photo._id}`}>
-            <PhotoEntry {...photo} />
+            <PhotoEntry {...photo} size="large" />
           </Link>
         ))}
       </div>
