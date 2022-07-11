@@ -3,6 +3,7 @@ import {
   FILE_UPLOAD,
   GET_MARKER,
   GET_MARKERS,
+  GET_MY_PHOTOS,
   GET_PHOTOS_CONTAINING_TAG,
   GET_PHOTO_WITH_BOOKMARKS,
   GET_RANDOM_PHOTO_WITH_BOOKMARKS,
@@ -41,6 +42,22 @@ export const getPhotos = async tag => {
   });
 
   return photos;
+};
+
+export const getMyPhotos = async userId => {
+  const { user } = await API.request(
+    GET_MY_PHOTOS,
+    {
+      userId,
+    },
+    {
+      authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("loginData")).accessToken
+      }`,
+    },
+  );
+
+  return user;
 };
 
 export const getUserBookmarks = async userId => {

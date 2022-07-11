@@ -62,6 +62,20 @@ export const GET_USER_BOOKMARKS = gql`
   }
 `;
 
+export const GET_MY_PHOTOS = gql`
+  query User($userId: ID) {
+    user(id: $userId) {
+      myPhotos {
+        _id
+        imageUrl
+        tags
+        country
+        city
+      }
+    }
+  }
+`;
+
 export const LOGIN = gql`
   mutation Login($name: String!, $email: String!) {
     login(name: $name, email: $email) {

@@ -41,8 +41,8 @@ const ModalContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 30rem;
-  height: 35rem;
+  width: 90vw;
+  height: 50vh;
   padding: 1rem 1rem 0;
   transform: translate(-50%, -50%);
   display: flex;
@@ -52,6 +52,7 @@ const ModalContainer = styled.div`
   box-shadow: 0px 8px 30px;
   border-radius: 20px;
   z-index: 1000;
+  overflow-x: hidden;
   overflow-y: auto;
 `;
 

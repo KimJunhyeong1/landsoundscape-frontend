@@ -2,10 +2,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { ImLocation2 } from "react-icons/im";
 
-function PhotoEntry({ imageUrl, country, city, tags }) {
+function PhotoEntry({ imageUrl, country, city, tags, size }) {
   return (
     <Wrapper>
-      <PhotoView src={imageUrl} />
+      <PhotoView src={imageUrl} size={size} />
       <Location>
         <LocationIcon />
         <LocationContent>
@@ -22,6 +22,7 @@ PhotoEntry.propTypes = {
   country: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
+  size: PropTypes.string,
 };
 
 const Wrapper = styled.div`
@@ -30,7 +31,7 @@ const Wrapper = styled.div`
 `;
 
 const PhotoView = styled.img`
-  width: 30rem;
+  width: ${props => (props.size === "large" ? "100vw" : "90vw")};
   height: 20rem;
   object-fit: cover;
 `;

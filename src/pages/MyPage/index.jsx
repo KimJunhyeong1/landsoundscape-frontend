@@ -1,38 +1,35 @@
-import _ from "lodash";
 import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import { getMarker } from "../../api";
-import CityPhotoList from "../../components/CityPhotoList";
+import { getMyPhotos } from "../../api";
+import loginState from "../../recoil/auth";
 import ArrowBack from "../../components/themes/ArrowBack";
+import MyPhotoList from "../../components/MyPhotoList";
 
-function CountryPage() {
+function MyPage() {
+  const userData = useRecoilValue(loginState);
   const navigate = useNavigate();
-  const { countryId } = useParams();
   const { data } = useQuery(
-    ["getMarker", countryId],
-    () => getMarker(countryId),
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
-  const groupedCityPhotos = Object.entries(
-    _.mapValues(_.groupBy(data.photos, "city")),
+    ["getMyPhotos", userData?._id],
+    () => getMyPhotos(userData?._id),
+    { refetchOnWindowFocus: false },
   );
 
   return (
     <Wrapper>
       <LogoTitle>LandSoundScape</LogoTitle>
       <ArrowBack onClick={() => navigate("/")} />
-      <CountryName>{data.country}</CountryName>
-      <CityPhotoList groupedCityPhotos={groupedCityPhotos} />
+      <UserName>{`${userData.name}'s Photos`}</UserName>
+      <MyPhotoList list={data.myPhotos} />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   position: relative;
+  padding-top: 1rem;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -48,11 +45,14 @@ const LogoTitle = styled.span`
   font-size: 2rem;
 `;
 
-const CountryName = styled.span`
+const UserName = styled.span`
+  align-self: flex-start;
+  margin-left: 3rem;
+  margin-top: 6rem;
+  margin-bottom: 0.5rem;
   color: white;
   font-weight: 800;
   font-size: 1.6rem;
-  margin-top: 3rem;
 `;
 
-export default CountryPage;
+export default MyPage;
