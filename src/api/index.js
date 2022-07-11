@@ -3,6 +3,7 @@ import {
   FILE_UPLOAD,
   GET_MARKER,
   GET_MARKERS,
+  GET_PHOTOS_CONTAINING_TAG,
   GET_PHOTO_WITH_BOOKMARKS,
   GET_RANDOM_PHOTO_WITH_BOOKMARKS,
   GET_USER_BOOKMARKS,
@@ -32,6 +33,14 @@ export const getPhotoAndBookmarks = async (photoId, userId) => {
   });
 
   return { photo, user };
+};
+
+export const getPhotos = async tag => {
+  const { photos } = await API.request(GET_PHOTOS_CONTAINING_TAG, {
+    tag,
+  });
+
+  return photos;
 };
 
 export const getUserBookmarks = async userId => {

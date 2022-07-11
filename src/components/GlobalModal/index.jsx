@@ -5,6 +5,7 @@ import modalState from "../../recoil/modal";
 import Login from "../Login";
 import Upload from "../Upload";
 import Bookmarks from "../Bookmarks";
+import Search from "../Search";
 
 function GlobalModal() {
   const { modalType, modalProps } = useRecoilValue(modalState) || {};
@@ -34,7 +35,11 @@ function GlobalModal() {
   }
 
   if (modalType === "SearchModal") {
-    return <Modal {...modalProps}></Modal>;
+    return (
+      <Modal {...modalProps}>
+        <Search />
+      </Modal>
+    );
   }
 
   return <></>;

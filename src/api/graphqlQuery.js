@@ -36,6 +36,18 @@ export const GET_PHOTO_WITH_BOOKMARKS = gql`
   }
 `;
 
+export const GET_PHOTOS_CONTAINING_TAG = gql`
+  query Photos($tag: String!) {
+    photos(tag: $tag) {
+      _id
+      imageUrl
+      tags
+      country
+      city
+    }
+  }
+`;
+
 export const GET_USER_BOOKMARKS = gql`
   query User($userId: ID) {
     user(id: $userId) {
