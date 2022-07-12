@@ -7,6 +7,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App";
 import DebugObserver from "./components/DebugObserver";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,3 +34,5 @@ const renderApp = () => (
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(renderApp());
+
+serviceWorkerRegistration.register();
