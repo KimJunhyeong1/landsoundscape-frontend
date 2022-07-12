@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { FaBookmark, FaRegBookmark, FaShareAlt } from "react-icons/fa";
-import { HiVolumeUp } from "react-icons/hi";
+import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import useSound from "use-sound";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
@@ -16,6 +16,9 @@ function BottomButtons({
   const [muted, setMuted] = useRecoilState(mutedState);
   const [play, { stop, sound }] = useSound(soundUrl, {
     interrupt: true,
+    onend: () => {
+      onNewButtonClick();
+    },
   });
 
   useEffect(() => {
@@ -45,11 +48,19 @@ function BottomButtons({
       >
         new landscape
       </NewLandscapeButton>
-      <VolumeButton
-        onClick={() => {
-          setMuted(!muted);
-        }}
-      />
+      {muted ? (
+        <VolumeOffButton
+          onClick={() => {
+            setMuted(!muted);
+          }}
+        />
+      ) : (
+        <VolumeButton
+          onClick={() => {
+            setMuted(!muted);
+          }}
+        />
+      )}
     </Wrapper>
   );
 }
@@ -107,6 +118,13 @@ const NewLandscapeButton = styled.button`
 `;
 
 const VolumeButton = styled(HiVolumeUp)`
+  width: 3.5rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  color: white;
+`;
+
+const VolumeOffButton = styled(HiVolumeOff)`
   width: 3.5rem;
   height: 2.5rem;
   font-size: 1rem;

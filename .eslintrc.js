@@ -27,6 +27,10 @@ module.exports = {
     "no-underscore-dangle": "off",
     "no-restricted-syntax": "off",
     "no-named-as-default": "off",
+    "no-use-before-define": "off",
+    "no-param-reassign": "off",
+    "prefer-regex-literals": "off",
+    "prefer-template": "off",
   },
   settings: {
     "import/resolver": {
