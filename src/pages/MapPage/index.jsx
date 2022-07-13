@@ -57,10 +57,6 @@ function MapPage() {
               <Marker key={_id} coordinates={coordinates}>
                 <g
                   fill="none"
-                  stroke="#FF5533"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                   transform="translate(-15, -36)"
                   onClick={() => {
                     navigate(`/country/${_id}`);
@@ -84,20 +80,18 @@ function MapPage() {
                       fill="white"
                     />
                     <path />
-                    <MarkerImage href={recentlyPhotoUrl} />
+                    <foreignObject
+                      x="1.8"
+                      y="1.45"
+                      width="100px"
+                      height="100px"
+                    >
+                      <MarkerImage src={recentlyPhotoUrl} />
+                    </foreignObject>
                   </svg>
-                  <text
-                    textAnchor="middle"
-                    y="3"
-                    x="32"
-                    style={{
-                      backgroundColor: "white",
-                      fill: "white",
-                      fontSize: "11px",
-                    }}
-                  >
-                    {photosNum}
-                  </text>
+                  <foreignObject y="-17" x="23" width="50" height="50">
+                    <PhotoNum>{photosNum}</PhotoNum>
+                  </foreignObject>
                 </g>
                 <text
                   textAnchor="middle"
@@ -120,18 +114,32 @@ function MapPage() {
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100vh;
+  overflow-x: hidden;
   overflow-y: hidden;
   background-color: #bcbcbc;
 `;
 
 const StyledComposableMap = styled(ComposableMap)`
   height: 100vh;
+  z-index: -1;
 `;
 
-const MarkerImage = styled.image`
-  width: 82%;
-  height: 95%;
+const MarkerImage = styled.img`
+  width: 37px;
+  height: 37px;
+  border-radius: 3px;
+  cursor: pointer;
+`;
+
+const PhotoNum = styled.p`
+  width: 15px;
+  height: 15px;
+  color: white;
+  border-radius: 50%;
+  background-color: #ca7358;
+  text-align: center;
+  line-height: 17px;
+  font-size: 10px;
 `;
 
 export default MapPage;
