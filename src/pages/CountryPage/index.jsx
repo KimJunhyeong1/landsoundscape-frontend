@@ -24,7 +24,7 @@ function CountryPage() {
   return (
     <Wrapper>
       <LogoTitle>LandSoundScape</LogoTitle>
-      <ArrowBack onClick={() => navigate("/")} />
+      <ArrowBack onClick={() => navigate("/map")} />
       <CountryName>{data.country}</CountryName>
       <CityPhotoList groupedCityPhotos={groupedCityPhotos} />
     </Wrapper>
