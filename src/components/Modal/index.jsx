@@ -42,7 +42,7 @@ const ModalContainer = styled.div`
   top: 50%;
   left: 50%;
   width: 90vw;
-  height: 50vh;
+  height: 60vh;
   padding: 1rem 1rem 0;
   transform: translate(-50%, -50%);
   display: flex;
