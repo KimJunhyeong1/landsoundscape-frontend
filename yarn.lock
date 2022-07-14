@@ -1894,6 +1894,11 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
+"@react-hook/media-query@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@react-hook/media-query/-/media-query-1.1.1.tgz#7fc4e52591784a39be924b62b4270ae3e18ec578"
+  integrity sha512-VM14wDOX5CW5Dn6b2lTiMd79BFMTut9AZj2+vIRT3LCKgMCYmdqruTtzDPSnIVDQdtxdPgtOzvU9oK20LopuOw==
+
 "@react-oauth/google@^0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.2.6.tgz#42f7a18c62d677c77ee8e1fc2eec2ccbe50be997"
@@ -10010,6 +10015,11 @@ lodash.sortby@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==
 
+lodash.throttle@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
+
 lodash.uniq@4.5.0, lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -12403,6 +12413,14 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-lazy-load-image-component@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/react-lazy-load-image-component/-/react-lazy-load-image-component-1.5.4.tgz#e75b6520c972b6278a9811876716cdab56e401fb"
+  integrity sha512-PSi9tckzZmiqfYZwS6ke2RoRbICsN5m0qsG6fEjUdQNe5STiJieXLlRuGD3uAASOQPFiKYFSLoueN07nk0uffw==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
 
 react-merge-refs@^1.0.0:
   version "1.1.0"
