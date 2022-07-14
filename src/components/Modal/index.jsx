@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { MoonLoader } from "react-spinners";
 
 import useModal from "../../hooks/useModal";
+import SpinnersWrapper from "../themes/SpinnersWrapper";
 
 export default function Modal({ children, title }) {
   const { hideModal } = useModal();
@@ -14,7 +16,13 @@ export default function Modal({ children, title }) {
       <ModalContainer onClick={e => e.stopPropagation()}>
         <ModalTitle>{title}</ModalTitle>
         <CloseButton onClick={hideModal} />
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense
+          fallback={
+            <SpinnersWrapper>
+              <MoonLoader />
+            </SpinnersWrapper>
+          }
+        >
           <ErrorBoundary
             fallbackRender={({ error }) => <div>{error.message}</div>}
           >
@@ -54,6 +62,11 @@ const ModalContainer = styled.div`
   z-index: 1000;
   overflow-x: hidden;
   overflow-y: auto;
+
+  @media only screen and (min-width: 768px) {
+    width: 45vw;
+    padding: 1rem 3rem;
+  }
 `;
 
 const ModalTitle = styled.span`
