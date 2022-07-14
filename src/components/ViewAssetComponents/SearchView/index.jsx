@@ -44,12 +44,16 @@ const SearchBarWrapper = styled.div`
 `;
 
 const SearchBar = styled.input`
-  width: 22rem;
+  width: 20rem;
   height: 1.8rem;
   border: 0px solid white;
 
   &:focus {
     outline: none;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 30rem;
   }
 `;
 
@@ -61,6 +65,14 @@ const SearchIcon = styled(BsSearch)`
 
 const PhotosWrapper = styled.div`
   margin-top: 2rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default SearchView;

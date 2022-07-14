@@ -21,24 +21,38 @@ function Bookmarks() {
 
   return (
     <>
-      <NameTile>{userData.name}</NameTile>
-      {data.bookmarks.map(bookmark => (
-        <Link
-          key={bookmark._id}
-          to={`/${bookmark._id}`}
-          onClick={() => hideModal()}
-        >
-          <PhotoEntry {...bookmark} />
-        </Link>
-      ))}
+      <NameTile>{userData.name}`s Pick</NameTile>
+      <Wrapper>
+        {data.bookmarks.map(bookmark => (
+          <Link
+            key={bookmark._id}
+            to={`/${bookmark._id}`}
+            onClick={() => hideModal()}
+          >
+            <PhotoEntry {...bookmark} />
+          </Link>
+        ))}
+      </Wrapper>
     </>
   );
 }
 
-const NameTile = styled.h3`
+const NameTile = styled.span`
+  margin-top: 3rem;
+  align-self: flex-start;
   font-size: 1.8rem;
   color: #265d6e;
   font-weight: 800;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default Bookmarks;
