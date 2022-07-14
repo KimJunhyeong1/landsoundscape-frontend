@@ -2,6 +2,7 @@ import { ThemeProvider } from "styled-components";
 import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import MoonLoader from "react-spinners/MoonLoader";
 
 import theme from "./components/themes";
 import GlobalStyle from "./components/themes/GlobalStyle";
@@ -11,12 +12,19 @@ import PhotoDetailPage from "./pages/PhotoDetailPage";
 import MapPage from "./pages/MapPage";
 import CountryPage from "./pages/CountryPage";
 import MyPage from "./pages/MyPage";
+import SpinnersWrapper from "./components/themes/SpinnersWrapper";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense
+        fallback={
+          <SpinnersWrapper>
+            <MoonLoader />
+          </SpinnersWrapper>
+        }
+      >
         <ErrorBoundary
           fallbackRender={({ error }) => <div>{error.message}</div>}
         >

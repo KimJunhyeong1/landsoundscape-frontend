@@ -1,32 +1,28 @@
-import _ from "lodash";
-import { useQuery } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
+import { MoonLoader } from "react-spinners";
 import styled from "styled-components";
 
-import { getMarker } from "../../api";
-import CityPhotoList from "../../components/CityPhotoList";
+import CountryPageInfo from "../../components/CountryPageInfo";
 import ArrowBack from "../../components/themes/ArrowBack";
+import SpinnersWrapper from "../../components/themes/SpinnersWrapper";
 
 function CountryPage() {
   const navigate = useNavigate();
-  const { countryId } = useParams();
-  const { data } = useQuery(
-    ["getMarker", countryId],
-    () => getMarker(countryId),
-    {
-      refetchOnWindowFocus: false,
-    },
-  );
-  const groupedCityPhotos = Object.entries(
-    _.mapValues(_.groupBy(data.photos, "city")),
-  );
 
   return (
     <Wrapper>
       <LogoTitle>LandSoundScape</LogoTitle>
       <ArrowBack onClick={() => navigate("/map")} />
-      <CountryName>{data.country}</CountryName>
-      <CityPhotoList groupedCityPhotos={groupedCityPhotos} />
+      <Suspense
+        fallback={
+          <SpinnersWrapper>
+            <MoonLoader />
+          </SpinnersWrapper>
+        }
+      >
+        <CountryPageInfo />
+      </Suspense>
     </Wrapper>
   );
 }
@@ -46,13 +42,6 @@ const LogoTitle = styled.span`
   color: white;
   font-weight: 800;
   font-size: 2rem;
-`;
-
-const CountryName = styled.span`
-  color: white;
-  font-weight: 800;
-  font-size: 1.6rem;
-  margin-top: 3rem;
 `;
 
 export default CountryPage;
