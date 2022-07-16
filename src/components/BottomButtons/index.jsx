@@ -5,11 +5,14 @@ import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import useSound from "use-sound";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
+
 import mutedState from "../../recoil/muted";
+import useModal from "../../hooks/useModal";
 
 function BottomButtons({
   onNewButtonClick,
   onBookmarkButtonClick,
+  photoId,
   soundUrl,
   isBookmark,
 }) {
@@ -20,6 +23,17 @@ function BottomButtons({
       onNewButtonClick();
     },
   });
+  const { showModal } = useModal();
+  const handleShareButtonClick = async () => {
+    await navigator.clipboard.writeText(`${window.location.origin}/${photoId}`);
+
+    showModal({
+      modalType: "ConfirmModal",
+      modalProps: {
+        message: "The URL of the landscape with the sound has been copied",
+      },
+    });
+  };
 
   useEffect(() => {
     if (sound && !muted) {
@@ -38,7 +52,7 @@ function BottomButtons({
         ) : (
           <BookmarkRegButton onClick={onBookmarkButtonClick} />
         )}
-        <ShareButton />
+        <ShareButton onClick={handleShareButtonClick} />
       </LeftButtonGroup>
       <NewLandscapeButton
         onClick={() => {
@@ -68,6 +82,7 @@ function BottomButtons({
 BottomButtons.propTypes = {
   onNewButtonClick: PropTypes.func.isRequired,
   onBookmarkButtonClick: PropTypes.func.isRequired,
+  photoId: PropTypes.string.isRequired,
   soundUrl: PropTypes.string.isRequired,
   isBookmark: PropTypes.bool.isRequired,
 };

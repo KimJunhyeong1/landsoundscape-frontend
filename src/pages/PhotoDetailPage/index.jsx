@@ -67,6 +67,7 @@ function PhotoDetailPage() {
       <BottomButtons
         onNewButtonClick={handleNewButtonClick}
         onBookmarkButtonClick={handleBookmarkButtonClick}
+        photoId={photoId}
         soundUrl={data.photo?.soundUrl}
         isBookmark={isBookmark}
       />
