@@ -64,6 +64,7 @@ function MainPage() {
       <BottomButtons
         onNewButtonClick={refetch}
         onBookmarkButtonClick={handleBookmarkButtonClick}
+        photoId={currentPhotoId}
         soundUrl={data.photo?.soundUrl}
         isBookmark={isBookmark}
       />

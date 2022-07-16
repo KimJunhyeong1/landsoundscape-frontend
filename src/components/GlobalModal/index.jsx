@@ -6,6 +6,7 @@ import Login from "../Login";
 import Upload from "../Upload";
 import Bookmarks from "../Bookmarks";
 import Search from "../Search";
+import Confirm from "../Comfirm";
 
 function GlobalModal() {
   const { modalType, modalProps } = useRecoilValue(modalState) || {};
@@ -38,6 +39,14 @@ function GlobalModal() {
     return (
       <Modal {...modalProps}>
         <Search />
+      </Modal>
+    );
+  }
+
+  if (modalType === "ConfirmModal") {
+    return (
+      <Modal {...modalProps}>
+        <Confirm {...modalProps} />
       </Modal>
     );
   }
