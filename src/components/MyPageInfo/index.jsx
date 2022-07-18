@@ -1,23 +1,31 @@
 import styled from "styled-components";
-import { useQuery } from "react-query";
+import { Suspense } from "react";
 import { useRecoilValue } from "recoil";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { MoonLoader } from "react-spinners";
 
-import { getMyPhotos } from "../../api";
 import MyPhotoList from "../MyPhotoList";
 import loginState from "../../recoil/auth";
 
+import PhotoSkeleton from "../PhotoSkeleton";
+import SpinnersWrapper from "../themes/SpinnersWrapper";
+
 function MyPageInfo() {
   const userData = useRecoilValue(loginState);
-  const { data } = useQuery(
-    ["getMyPhotos", userData?._id],
-    () => getMyPhotos(userData?._id),
-    { refetchOnWindowFocus: false },
-  );
 
   return (
     <>
       <UserName>{`${userData.name}'s Photos`}</UserName>
-      <MyPhotoList list={data.myPhotos} />
+      <Suspense
+        fallback={
+          <SpinnersWrapper>
+            <MoonLoader />
+          </SpinnersWrapper>
+        }
+      >
+        <MyPhotoList userId={userData?._id} />
+      </Suspense>
     </>
   );
 }

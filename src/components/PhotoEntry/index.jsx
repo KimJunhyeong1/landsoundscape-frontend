@@ -9,18 +9,16 @@ import { ImLocation2 } from "react-icons/im";
 
 function PhotoEntry({ imageUrl, country, city, tags, size }) {
   return (
-    <LazyLoadComponent>
-      <Wrapper>
-        <PhotoView src={imageUrl} size={size} effect="blur" />
-        <Location>
-          <LocationIcon />
-          <LocationContent>
-            {city} - {country}
-          </LocationContent>
-        </Location>
-        <Tags>{tags.join(", ")}</Tags>
-      </Wrapper>
-    </LazyLoadComponent>
+    <Wrapper>
+      <PhotoView src={imageUrl} size={size} effect="blur" />
+      <Location>
+        <LocationIcon />
+        <LocationContent>
+          {city} - {country}
+        </LocationContent>
+      </Location>
+      <Tags>{tags.join(", ")}</Tags>
+    </Wrapper>
   );
 }
 
@@ -95,6 +93,10 @@ const Tags = styled.span`
   @media only screen and (min-width: 768px) {
     font-size: 1rem;
   }
+`;
+
+const Test = styled.div`
+  background-color: white;
 `;
 
 export default PhotoEntry;
