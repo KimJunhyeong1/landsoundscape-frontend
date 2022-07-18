@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import { Suspense } from "react";
 import { useRecoilValue } from "recoil";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { MoonLoader } from "react-spinners";
 
 import MyPhotoList from "../MyPhotoList";
 import loginState from "../../recoil/auth";
-
-import PhotoSkeleton from "../PhotoSkeleton";
 import SpinnersWrapper from "../themes/SpinnersWrapper";
 
 function MyPageInfo() {
