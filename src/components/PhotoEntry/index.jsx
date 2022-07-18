@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import {
-  LazyLoadComponent,
-  LazyLoadImage,
-} from "react-lazy-load-image-component";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ImLocation2 } from "react-icons/im";
 
@@ -93,10 +90,6 @@ const Tags = styled.span`
   @media only screen and (min-width: 768px) {
     font-size: 1rem;
   }
-`;
-
-const Test = styled.div`
-  background-color: white;
 `;
 
 export default PhotoEntry;

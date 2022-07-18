@@ -1,12 +1,7 @@
-import { Suspense } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { MoonLoader } from "react-spinners";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 import ArrowBack from "../../components/themes/ArrowBack";
-import SpinnersWrapper from "../../components/themes/SpinnersWrapper";
 import MyPageInfo from "../../components/MyPageInfo";
 
 function MyPage() {
