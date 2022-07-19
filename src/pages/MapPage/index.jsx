@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 import MapChart from "../../components/MapChart";
+import LogoTitle from "../../components/themes/LogoTitle";
 
 function MapPage() {
   return (
     <Wrapper>
+      <LogoTitle>LandSoundScape</LogoTitle>
       <MapChart />
     </Wrapper>
   );
