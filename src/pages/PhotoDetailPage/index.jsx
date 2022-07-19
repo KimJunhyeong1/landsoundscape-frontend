@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
 import { useNavigate, useParams } from "react-router-dom";
+import { FullPage, Slide } from "react-full-page/lib";
+import { useMediaQuery } from "@react-hook/media-query";
 
 import BottomButtons from "../../components/BottomButtons";
 import AsideButtons from "../../components/AsideButtons";
@@ -10,9 +12,14 @@ import { getPhotoAndBookmarks, insertBookmark } from "../../api";
 import MainPageHeader from "../../components/MainPageHeader";
 import loginState from "../../recoil/auth";
 import useModal from "../../hooks/useModal";
+import MapPage from "../MapPage";
+import modalState from "../../recoil/modal/atom";
+import LogoTitle from "../../components/themes/LogoTitle";
 
 function PhotoDetailPage() {
   const { photoId } = useParams();
+  const matches = useMediaQuery(`only screen and (min-width: 768px)`);
+  const isModalOpen = useRecoilValue(modalState);
   const navigate = useNavigate();
   const { showModal } = useModal();
   const userData = useRecoilValue(loginState);
@@ -57,22 +64,32 @@ function PhotoDetailPage() {
   }, [data]);
 
   return (
-    <PhotoWrapper>
-      <Photo src={data.photo?.imageUrl} />
-      <MainPageHeader
-        creator={data.photo?.creator}
-        city={data.photo?.city}
-        country={data.photo?.country}
-      />
-      <BottomButtons
-        onNewButtonClick={handleNewButtonClick}
-        onBookmarkButtonClick={handleBookmarkButtonClick}
-        photoId={photoId}
-        soundUrl={data.photo?.soundUrl}
-        isBookmark={isBookmark}
-      />
-      <AsideButtons />
-    </PhotoWrapper>
+    <>
+      {matches && <LogoTitle>LandSoundScape</LogoTitle>}
+      <FullPage scrollMode={isModalOpen ? "normal" : "full-page"}>
+        <Slide>
+          <PhotoWrapper>
+            <Photo src={data.photo?.imageUrl} />
+            <MainPageHeader
+              creator={data.photo?.creator}
+              city={data.photo?.city}
+              country={data.photo?.country}
+            />
+            <BottomButtons
+              onNewButtonClick={handleNewButtonClick}
+              onBookmarkButtonClick={handleBookmarkButtonClick}
+              photoId={photoId}
+              soundUrl={data.photo?.soundUrl}
+              isBookmark={isBookmark}
+            />
+            <AsideButtons />
+          </PhotoWrapper>
+        </Slide>
+        <Slide>
+          <MapPage />
+        </Slide>
+      </FullPage>
+    </>
   );
 }
 
