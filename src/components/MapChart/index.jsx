@@ -77,13 +77,18 @@ function MapChart() {
                   fill="white"
                 />
                 <path />
-                <foreignObject x="1.8" y="-40" width="50px" height="80px">
-                  <PhotoWrapper>
-                    <MarkerImage src={recentlyPhotoUrl} />
-                    <PhotoNum>{photosNum}</PhotoNum>
-                  </PhotoWrapper>
+                <foreignObject x="1.8" y="1.45" width="50px" height="50px">
+                  <MarkerImage src={recentlyPhotoUrl} />
                 </foreignObject>
               </svg>
+              <foreignObject
+                y={matches ? "-15" : "-5"}
+                x="23"
+                width="50"
+                height="50"
+              >
+                <PhotoNum>{photosNum}</PhotoNum>
+              </foreignObject>
             </g>
             <text
               textAnchor="middle"
@@ -134,13 +139,7 @@ const StyledComposableMap = styled(ComposableMap)`
   }
 `;
 
-const PhotoWrapper = styled.div`
-  position: relative;
-`;
-
 const MarkerImage = styled.img`
-  position: absolute;
-  top: 41px;
   width: 37px;
   height: 37px;
   border-radius: 3px;
@@ -148,9 +147,6 @@ const MarkerImage = styled.img`
 `;
 
 const PhotoNum = styled.p`
-  position: absolute;
-  top: 26.5px;
-  right: 8px;
   width: 15px;
   height: 15px;
   color: white;
