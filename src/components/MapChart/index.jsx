@@ -127,7 +127,7 @@ const StyledComposableMap = styled(ComposableMap)`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
 
   @media only screen and (min-width: 768px) {
     width: 100vw;
