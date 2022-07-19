@@ -148,7 +148,7 @@ const PhotoNum = styled.p`
   border-radius: 50%;
   background-color: #ca7358;
   text-align: center;
-  line-height: 17px;
+  line-height: 13px;
   font-size: 10px;
 `;
 

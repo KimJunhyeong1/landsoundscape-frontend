@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import ArrowBack from "../../components/themes/ArrowBack";
 import MyPageInfo from "../../components/MyPageInfo";
+import LogoTitle from "../../components/themes/LogoTitle";
 
 function MyPage() {
   const navigate = useNavigate();
@@ -30,12 +31,6 @@ const Wrapper = styled.div`
   @media only screen and (min-width: 768px) {
     padding: 1rem 10rem;
   }
-`;
-
-const LogoTitle = styled.span`
-  color: white;
-  font-weight: 800;
-  font-size: 2rem;
 `;
 
 export default MyPage;

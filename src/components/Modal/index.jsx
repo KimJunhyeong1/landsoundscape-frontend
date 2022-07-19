@@ -51,7 +51,7 @@ const ModalContainer = styled.div`
   left: 50%;
   width: 90vw;
   height: 60vh;
-  padding: 1rem 1rem 0;
+  padding: 1rem 1rem;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@ const ModalContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     width: 45vw;
-    padding: 1rem 3rem;
+    padding: 1rem 2.5rem;
   }
 `;
 
