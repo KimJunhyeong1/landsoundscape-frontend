@@ -111,7 +111,7 @@ const LeftButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 9rem;
+  width: 8.5rem;
   padding: 0 0.5rem;
 `;
 
@@ -130,6 +130,9 @@ const BookmarkRegButton = styled(Icon.withComponent(FaRegBookmark))``;
 const ShareButton = styled(Icon.withComponent(FaShareAlt))``;
 
 const CenterGroup = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-40%, 0%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -151,7 +154,7 @@ const NewLandscapeButton = styled.button`
   border-radius: 20rem;
   font-size: 1.3rem;
   font-family: "Playfair Display", serif;
-  font-weight: 100;
+  font-weight: 600;
   cursor: pointer;
 
   @media only screen and (min-width: 768px) {

@@ -47,12 +47,13 @@ const Location = styled.div`
 `;
 
 const LocationIcon = styled(ImLocation2)`
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: white;
 `;
 
 const HeaderContent = styled.span`
+  font-weight: 200;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: white;
 `;

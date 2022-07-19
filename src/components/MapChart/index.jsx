@@ -77,20 +77,20 @@ function MapChart() {
                   fill="white"
                 />
                 <path />
-                <foreignObject x="1.8" y="1.45" width="100px" height="100px">
-                  <MarkerImage src={recentlyPhotoUrl} />
+                <foreignObject x="1.8" y="-40" width="50px" height="80px">
+                  <PhotoWrapper>
+                    <MarkerImage src={recentlyPhotoUrl} />
+                    <PhotoNum>{photosNum}</PhotoNum>
+                  </PhotoWrapper>
                 </foreignObject>
               </svg>
-              <foreignObject y="-17" x="23" width="50" height="50">
-                <PhotoNum>{photosNum}</PhotoNum>
-              </foreignObject>
             </g>
             <text
               textAnchor="middle"
               y="10"
               style={{
                 fill: "white",
-                fontSize: "9px",
+                fontSize: "8px",
               }}
             >
               {country}
@@ -134,7 +134,13 @@ const StyledComposableMap = styled(ComposableMap)`
   }
 `;
 
+const PhotoWrapper = styled.div`
+  position: relative;
+`;
+
 const MarkerImage = styled.img`
+  position: absolute;
+  top: 41px;
   width: 37px;
   height: 37px;
   border-radius: 3px;
@@ -142,6 +148,9 @@ const MarkerImage = styled.img`
 `;
 
 const PhotoNum = styled.p`
+  position: absolute;
+  top: 26.5px;
+  right: 8px;
   width: 15px;
   height: 15px;
   color: white;
@@ -150,6 +159,7 @@ const PhotoNum = styled.p`
   text-align: center;
   line-height: 13px;
   font-size: 10px;
+  z-index: 1000;
 `;
 
 export default MapChart;

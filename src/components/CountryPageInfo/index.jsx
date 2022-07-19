@@ -29,7 +29,7 @@ function CountryPageInfo() {
 
 const CountryName = styled.span`
   color: white;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 1.6rem;
   margin-top: 8rem;
 `;

@@ -35,11 +35,18 @@ const CityWrapper = styled.div`
 `;
 
 const CountryName = styled.span`
+  display: block;
   color: white;
-  font-weight: 800;
+  font-weight: 400;
   font-size: 1.6rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   margin-left: 1rem;
+
+  @media only screen and (min-width: 768px) {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
 `;
 
 const Wrapper = styled.div`
