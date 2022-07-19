@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
   *{
-  box-sizing: border-box;
+    box-sizing: border-box;
   }
   
   html {
@@ -20,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    font-family: 'Playfair Display', serif;
   }
 `;
 
