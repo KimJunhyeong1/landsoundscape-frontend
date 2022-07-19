@@ -31,7 +31,7 @@ const CountryName = styled.span`
   color: white;
   font-weight: 800;
   font-size: 1.6rem;
-  margin-top: 3rem;
+  margin-top: 8rem;
 `;
 
 export default CountryPageInfo;

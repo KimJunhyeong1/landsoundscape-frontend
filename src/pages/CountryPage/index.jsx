@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import CountryPageInfo from "../../components/CountryPageInfo";
 import ArrowBack from "../../components/themes/ArrowBack";
+import LogoTitle from "../../components/themes/LogoTitle";
 import SpinnersWrapper from "../../components/themes/SpinnersWrapper";
 
 function CountryPage() {
@@ -13,7 +14,11 @@ function CountryPage() {
   return (
     <Wrapper>
       <LogoTitle>LandSoundScape</LogoTitle>
-      <ArrowBack onClick={() => navigate("/map")} />
+      <ArrowBack
+        onClick={() =>
+          navigate("/", { state: { isMapPage: true }, replace: true })
+        }
+      />
       <Suspense
         fallback={
           <SpinnersWrapper>
@@ -36,12 +41,6 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: #265d6e;
   overflow-y: auto;
-`;
-
-const LogoTitle = styled.span`
-  color: white;
-  font-weight: 800;
-  font-size: 2rem;
 `;
 
 export default CountryPage;

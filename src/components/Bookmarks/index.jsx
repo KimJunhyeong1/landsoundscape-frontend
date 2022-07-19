@@ -40,7 +40,7 @@ function Bookmarks() {
 const NameTile = styled.span`
   margin-top: 3rem;
   align-self: flex-start;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: #265d6e;
   font-weight: 800;
 `;

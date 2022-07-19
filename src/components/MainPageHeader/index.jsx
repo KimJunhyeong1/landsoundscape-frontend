@@ -4,15 +4,17 @@ import { ImLocation2 } from "react-icons/im";
 
 function MainPageHeader({ creator, city, country }) {
   return (
-    <HeaderWrapper>
-      <HeaderContent>{creator}</HeaderContent>
-      <Location>
-        <LocationIcon />
-        <HeaderContent>
-          {city} - {country}
-        </HeaderContent>
-      </Location>
-    </HeaderWrapper>
+    <>
+      <HeaderWrapper>
+        <HeaderContent>{creator.toUpperCase()}`S PHOTOS</HeaderContent>
+        <Location>
+          <LocationIcon />
+          <HeaderContent>
+            {city.toUpperCase()} - {country.toUpperCase()}
+          </HeaderContent>
+        </Location>
+      </HeaderWrapper>
+    </>
   );
 }
 
@@ -26,8 +28,8 @@ MainPageHeader.propTypes = {
 
 const HeaderWrapper = styled.div`
   display: flex;
-  width: 99%;
-  padding: 0 0.1rem;
+  width: 100%;
+  padding: 1.2rem 1.2rem;
   position: absolute;
   top: 0;
   flex-direction: row;
@@ -39,13 +41,18 @@ const Location = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const LocationIcon = styled(ImLocation2)`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: white;
 `;
 
-const HeaderContent = styled.h2`
+const HeaderContent = styled.span`
+  font-style: normal;
+  font-size: 1rem;
   color: white;
 `;
