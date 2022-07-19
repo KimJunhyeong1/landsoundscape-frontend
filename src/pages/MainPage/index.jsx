@@ -92,13 +92,13 @@ function MainPage() {
 
 const PhotoWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: relative;
 `;
 
 const Photo = styled.img`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
 `;
 
