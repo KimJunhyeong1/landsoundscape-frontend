@@ -8,7 +8,11 @@ import { useMediaQuery } from "@react-hook/media-query";
 
 import BottomButtons from "../../components/BottomButtons";
 import AsideButtons from "../../components/AsideButtons";
-import { getPhotoAndBookmarks, insertBookmark } from "../../api";
+import {
+  deleteBookmark,
+  getPhotoAndBookmarks,
+  insertBookmark,
+} from "../../api";
 import MainPageHeader from "../../components/MainPageHeader";
 import loginState from "../../recoil/auth";
 import useModal from "../../hooks/useModal";
@@ -24,6 +28,7 @@ function PhotoDetailPage() {
   const { showModal } = useModal();
   const userData = useRecoilValue(loginState);
   const bookmarkMutation = useMutation(insertBookmark);
+  const deleteBookmarkMutation = useMutation(deleteBookmark);
   const [isBookmark, setIsBookmark] = useState(false);
   const { data } = useQuery(
     ["getPhoto", photoId, userData?._id],
@@ -37,7 +42,7 @@ function PhotoDetailPage() {
     navigate("/");
   };
 
-  const handleBookmarkButtonClick = () => {
+  const handleBookmarkRegButtonClick = () => {
     if (!userData) {
       showModal({
         modalType: "LoginModal",
@@ -48,6 +53,17 @@ function PhotoDetailPage() {
     }
 
     bookmarkMutation.mutate(
+      { userId: userData?._id, photoId },
+      {
+        onSuccess: payload => {
+          setIsBookmark(payload.bookmarks.some(id => id === data.photo?._id));
+        },
+      },
+    );
+  };
+
+  const handleBookmarkButtonClick = () => {
+    deleteBookmarkMutation.mutate(
       { userId: userData?._id, photoId },
       {
         onSuccess: payload => {
@@ -77,6 +93,7 @@ function PhotoDetailPage() {
             />
             <BottomButtons
               onNewButtonClick={handleNewButtonClick}
+              onBookmarkRegButtonClick={handleBookmarkRegButtonClick}
               onBookmarkButtonClick={handleBookmarkButtonClick}
               photoId={photoId}
               soundUrl={data.photo?.soundUrl}

@@ -1,5 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import {
+  DELETE_BOOKMARK,
   FILE_UPLOAD,
   GET_MARKER,
   GET_MARKERS,
@@ -88,6 +89,22 @@ export const login = async ({ name, email }) => {
 export const insertBookmark = async input => {
   const { insertBookmarkForUser: data } = await API.request(
     INSERT_BOOKMARK_FOR_USER,
+    {
+      input,
+    },
+    {
+      authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("loginData")).accessToken
+      }`,
+    },
+  );
+
+  return data;
+};
+
+export const deleteBookmark = async input => {
+  const { deleteBookmark: data } = await API.request(
+    DELETE_BOOKMARK,
     {
       input,
     },

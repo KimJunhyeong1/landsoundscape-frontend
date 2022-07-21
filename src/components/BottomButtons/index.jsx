@@ -12,6 +12,7 @@ import useModal from "../../hooks/useModal";
 
 function BottomButtons({
   onNewButtonClick,
+  onBookmarkRegButtonClick,
   onBookmarkButtonClick,
   photoId,
   soundUrl,
@@ -49,9 +50,9 @@ function BottomButtons({
     <Wrapper>
       <LeftButtonGroup>
         {isBookmark ? (
-          <BookmarkButton />
+          <BookmarkButton onClick={onBookmarkButtonClick} />
         ) : (
-          <BookmarkRegButton onClick={onBookmarkButtonClick} />
+          <BookmarkRegButton onClick={onBookmarkRegButtonClick} />
         )}
         <ShareButton onClick={handleShareButtonClick} />
       </LeftButtonGroup>
@@ -90,6 +91,7 @@ function BottomButtons({
 
 BottomButtons.propTypes = {
   onNewButtonClick: PropTypes.func.isRequired,
+  onBookmarkRegButtonClick: PropTypes.func.isRequired,
   onBookmarkButtonClick: PropTypes.func.isRequired,
   photoId: PropTypes.string.isRequired,
   soundUrl: PropTypes.string.isRequired,
