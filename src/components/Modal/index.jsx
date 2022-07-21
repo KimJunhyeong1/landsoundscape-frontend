@@ -1,7 +1,7 @@
 import ReactDom from "react-dom";
 import styled from "styled-components";
 import { IoMdClose } from "react-icons/io";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { MoonLoader } from "react-spinners";
 
@@ -10,6 +10,19 @@ import SpinnersWrapper from "../themes/SpinnersWrapper";
 
 export default function Modal({ children, title }) {
   const { hideModal } = useModal();
+
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed; 
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
 
   return ReactDom.createPortal(
     <ModalOverlay onClick={hideModal}>
