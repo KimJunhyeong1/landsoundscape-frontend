@@ -88,8 +88,16 @@ export const LOGIN = gql`
 `;
 
 export const INSERT_BOOKMARK_FOR_USER = gql`
-  mutation Mutation($input: InsertBookmarkForUserInput!) {
+  mutation Mutation($input: UpdateBookmarkForUserInput!) {
     insertBookmarkForUser(input: $input) {
+      bookmarks
+    }
+  }
+`;
+
+export const DELETE_BOOKMARK = gql`
+  mutation DeleteBookmark($input: UpdateBookmarkForUserInput!) {
+    deleteBookmark(input: $input) {
       bookmarks
     }
   }
