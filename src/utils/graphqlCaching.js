@@ -47,7 +47,6 @@ async function serializeResponse(response) {
 
 async function setCache(request, response) {
   const body = await request.json();
-  console.log(body);
   const id = MD5(body.query + JSON.stringify(body.variables)).toString();
 
   const entry = {
