@@ -11,7 +11,8 @@ import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { StaleWhileRevalidate } from "workbox-strategies";
+import { CacheFirst, StaleWhileRevalidate } from "workbox-strategies";
+import { GqlNetworkFirst } from "./utils/graphqlCaching";
 
 clientsClaim();
 
@@ -62,6 +63,31 @@ registerRoute(
   }),
 );
 
+registerRoute(
+  /\.(?:png|gif|jpg|jpeg|svg)$/,
+  new CacheFirst({
+    cacheName: "images",
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 10,
+        maxAgeSeconds: 60 * 60 * 24 * 7, // 7 Days
+      }),
+    ],
+  }),
+);
+
+registerRoute(
+  ({ url }) => url.origin === process.env.REACT_APP_API_SERVER_URL,
+  ({ event }) => {
+    try {
+      return GqlNetworkFirst(event);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  "POST",
+);
+
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener("message", event => {
@@ -71,3 +97,22 @@ self.addEventListener("message", event => {
 });
 
 // Any other custom service worker logic can go here.
+self.addEventListener("fetch", function (event) {
+  if (event.request.method === "POST") {
+    event.respondWith(GqlNetworkFirst(event));
+  } else {
+    event.respondWith(
+      caches.match(event.request).then(function (r) {
+        return (
+          r ||
+          fetch(event.request).then(function (response) {
+            return caches.open("Landsoundscape-Cache").then(function (cache) {
+              cache.put(event.request, response.clone());
+              return response;
+            });
+          })
+        );
+      }),
+    );
+  }
+});

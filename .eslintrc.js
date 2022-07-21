@@ -31,6 +31,9 @@ module.exports = {
     "no-param-reassign": "off",
     "prefer-regex-literals": "off",
     "prefer-template": "off",
+    "prefer-destructuring": "off",
+    "consistent-return": "off",
+    radix: "off",
   },
   settings: {
     "import/resolver": {
