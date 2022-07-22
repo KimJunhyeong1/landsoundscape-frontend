@@ -4,7 +4,7 @@
 
 [LandSoundScape - Fall into the beautiful landscape and the sound of your imagination](https://www.landsoundscape.co/)
 
-## 🙇‍♂️ ****Introduction****
+## 🙇‍♂️ ****Intro****
 
 “**Fall into the beautiful landscape and the sound of your imagination.”**
 
