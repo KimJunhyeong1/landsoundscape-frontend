@@ -1,17 +1,12 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { useQuery } from "react-query";
 
-import { getMyPhotos } from "../../api";
 import PhotoEntry from "../PhotoEntry";
+import useMyPhotos from "../../hooks/useMyPhotos";
 
 function MyPhotoList({ userId }) {
-  const { data } = useQuery(
-    ["getMyPhotos", userId],
-    () => getMyPhotos(userId),
-    { refetchOnWindowFocus: false },
-  );
+  const { data } = useMyPhotos(userId);
 
   return (
     <Wrapper>
