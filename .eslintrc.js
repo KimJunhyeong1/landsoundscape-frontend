@@ -11,7 +11,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
   ],
-  ignorePatterns: ["/stories/*.js"],
+  ignorePatterns: ["/stories/*.js", "src/test/*"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
