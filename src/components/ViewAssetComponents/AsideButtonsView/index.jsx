@@ -15,7 +15,7 @@ function AsideButtonsView({
       <ProfileIcon onClick={onProfileIconClick} />
       <UploadIcon onClick={onUploadIconClick} />
       <BookmarkIcon onClick={onBookmarkIconClick} />
-      <SearchIcon onClick={onSearchIconClick} />
+      <SearchIcon data-testid="search_icon" onClick={onSearchIconClick} />
     </Wrapper>
   );
 }
